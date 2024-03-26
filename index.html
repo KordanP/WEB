@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Playlist Editor</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <nav class="tabs">
+            <a href="index.html">Home</a>
+            <a href="playlist.html">Playlists</a>
+            <a href="track.html">Tracks</a>
+        </nav>
+        <div class="user-info">
+            <span>Welcome, User123</span>
+            <button>Logout</button>
+        </div>
+        <form class="auth-buttons" action="login.html">
+            <input type="submit" value="Login"/>
+            <button>Sign Up</button>
+        </form>
+    </header>
+
+    <ul id="trackList">
+        <!-- Тут будуть відображені треки -->
+        <li><img src="icons/image.png" alt="Album Icon"><span>Track 1 </span> <button onclick="addToPlaylist('Track 1')">Додати в плейлист</button></li>
+        <li><img src="icons/image.png" alt="Album Icon"><span>Track 2 </span> <button onclick="addToPlaylist('Track 2')">Додати в плейлист</button></li>
+        <li><img src="icons/image.png" alt="Album Icon"><span>Track 3 </span> <button onclick="addToPlaylist('Track 3')">Додати в плейлист</button></li>
+    </ul>
+
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Add Track to Playlist</h2>
+            <p>Select the playlist to add the track to:</p>
+            <select class="playlist-options">
+                <option value="Playlist 1">Playlist 1</option>
+                <option value="Playlist 2">Playlist 2</option>
+                <option value="Playlist 3">Playlist 3</option>
+            </select>
+            <br>
+            <button onclick="closeModal()">Add to Playlist</button>
+        </div>
+    </div>
+    
+
+    <script src="script.js"></script>
+</body>
+</html>

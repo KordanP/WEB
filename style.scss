@@ -1,0 +1,433 @@
+// Variables
+$primary-color: #1DB954; // Spotify green
+$secondary-color: #191414; // Dark gray
+$accent-color: #FFFFFF; // White
+$error-color: #dc3545; // Error color
+
+// General Styles
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: $secondary-color;
+    color: $accent-color;
+    transition: background-color 0.3s ease;
+}
+
+header {
+    background-color: #1DB954; // Spotify green
+    padding: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .tabs {
+        a {
+            color: #FFFFFF; // White text color
+            text-decoration: none;
+            margin-right: 1rem;
+            transition: color 0.3s ease;
+
+            &:hover {
+                color: #191414; // Dark gray text color
+            }
+        }
+    }
+
+    .user-auth {
+        display: flex;
+        align-items: center;
+
+        span {
+            color: #FFFFFF; // White text color
+            margin-right: 1rem;
+        }
+
+        button{
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            background-color: #191414; // Dark gray color
+            color: #FFFFFF; // White text color
+            font-size: 1rem;
+            transition: background-color 0.3s ease;
+
+            &:hover {
+                background-color: darken(#191414, 10%); // Darken color on hover
+            }
+        }
+    }
+
+    .auth-buttons {
+        display: flex;
+        flex-direction: row;
+        button,
+        input[type="submit"]  {
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            background-color: #FFFFFF; // White background color
+            color: #1DB954; // Spotify green text color
+            font-size: 1rem;
+            transition: background-color 0.3s ease, color 0.3s ease;
+
+            &:hover {
+                background-color: #1DB954; // Spotify green background color
+                color: #FFFFFF; // White text color
+            }
+
+            & + button {
+                margin-left: 0.5rem;
+            }
+        }
+    }
+}
+
+
+main {
+    padding: 1rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+label,
+input[type="text"],
+input[type="password"] {
+    margin-bottom: 1rem;
+    color: $accent-color;
+}
+
+input[type="text"],
+input[type="password"] {
+    padding: 1rem;
+    border: none;
+    border-radius: 4px;
+    background-color: $accent-color;
+    color: $secondary-color;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+}
+
+button[type="submit"] {
+    padding: 1rem 2rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    background-color: $primary-color;
+    color: $accent-color;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+}
+
+button[type="submit"]:hover {
+    background-color: darken($primary-color, 10%);
+}
+
+section#login {
+    margin: 0 auto;
+    max-width: 400px;
+    background-color: $secondary-color;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    padding: 2rem;
+    text-align: center;
+}
+
+footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: $primary-color;
+    color: $accent-color;
+    text-align: center;
+    transition: background-color 0.3s ease;
+}
+
+.dialog-container {
+    margin: 3rem auto 5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.dialog {
+    background-color: #343a40;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    margin-bottom: 1rem;
+}
+
+.dialog h2,
+.dialog p {
+    color: #fff;
+    margin-bottom: 1rem;
+}
+
+.dialog button[type="button"] {
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    background-color: #191414;
+    color: #FFFFFF;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+    margin-top: 1rem;
+}
+
+.dialog button[type="button"]:hover {
+    background-color: darken(#191414, 10%);
+}
+
+// Playlist Styles
+.playlist-container,
+#playlistForm {
+    background-color: $secondary-color;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    padding: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.playlist-container h3,
+.playlist-container p {
+    color: $accent-color;
+    margin-bottom: 0.5rem;
+}
+
+.playlist-container .buttons button,
+#playlistForm button[type="submit"] {
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+}
+
+.playlist-container .buttons button,
+#playlistForm button[type="submit"] {
+    background-color: $primary-color;
+    color: $accent-color;
+}
+
+.playlist-container .buttons button:hover,
+#playlistForm button[type="submit"]:hover {
+    background-color: darken($primary-color, 10%);
+}
+
+.playlist-container .buttons button:last-child {
+    margin-right: 0;
+}
+.modal {
+    //display: none; /* Hide the modal by default */
+    //position: fixed; /* Position the modal */
+    z-index: 1; /* Make sure it appears on top of other elements */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scrolling if needed */
+    background-color: rgba(0, 0, 0, 0.4); /* Black background with opacity */
+}
+
+.modal-content {
+    background-color: #191414; // Темно-сірий фон
+    margin: 15% auto; // Центрування модального вікна по вертикалі та горизонталі
+    padding: 20px;
+    border-radius: 8px;
+    max-width: 400px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); // Тінь
+    position: relative;
+  
+    .close {
+        color: #FFFFFF; // Білий колір тексту
+        position: absolute;
+        top: 0;
+        right: 10px;
+        font-size: 24px;
+        font-weight: bold;
+        cursor: pointer;
+
+        &:hover,
+        &:focus {
+            color: #dc3545; // Зміна кольору при наведенні/фокусі
+        }
+    }
+
+    h2 {
+        color: #dc3545; // Колір тексту заголовку
+        margin-top: 0; // Видалення верхнього відступу
+    }
+
+    p {
+        color: #FFFFFF; // Білий колір тексту
+    }
+}
+
+.error-message {
+    color: red; // Червоний колір тексту помилки
+    font-size: 0.8rem; // Розмір шрифту
+    margin-top: 0.2rem; // Відступ від верхнього елемента
+}
+
+
+.close {
+    color: #FFFFFF; /* White text color */
+    position: absolute;
+    top: 0;
+    right: 10px;
+    font-size: 24px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close:hover,
+.close:focus {
+    color: #dc3545; /* Change color on hover/focus */
+}
+
+
+.error-message {
+    color: red; /* Червоний колір для тексту помилки */
+    font-size: 0.8rem; /* Зменшення розміру шрифту */
+    margin-top: 0.2rem; /* Відступ від верхнього елемента */
+}
+#trackList {
+    list-style-type: none;
+    padding: 0;
+    margin: 2rem;
+}
+
+#trackList li {
+    margin-bottom: 1.25rem; /* Відступ між кожним елементом списку */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#trackList li img {
+    width: 2rem; /* Ширина зображення */
+    height: auto; /* Автоматична висота зображення */
+    margin-right: 0.625rem; /* Відступ між зображенням та текстом */
+}
+
+#trackList li span{
+    margin-right: 0.5rem;
+}
+
+#trackList li button {
+    padding: 0.5rem 1rem; /* Розміри кнопки */
+    border: none;
+    border-radius: 0.3125rem; /* Закруглені кути */
+    background-color: #1DB954; /* Колір фону кнопки */
+    color: #FFFFFF; /* Колір тексту кнопки */
+    cursor: pointer;
+    transition: background-color 0.3s; /* Плавна анімація зміни кольору фону кнопки */
+}
+
+#trackList li button:hover {
+    background-color: #169144; /* Колір фону кнопки при наведенні */
+}
+
+
+.playlist-options {
+    padding: 0.5rem; // Відступи
+    border: 1px solid #ccc; // Рамка
+    border-radius: 4px; // Закруглені кути
+    background-color: #f9f9f9; // Фон
+    color: #333; // Колір тексту
+    font-size: 1rem; // Розмір шрифту
+    cursor: pointer; // Курсор
+    appearance: none; // Відключення стандартного відображення
+    outline: none; // Відключення обведення
+    transition: border-color 0.3s; // Плавний перехід для рамки
+
+    &:hover {
+        border-color: #999; // Зміна кольору рамки при наведенні
+    }
+
+    &:focus {
+        border-color: #1DB954; // Кольор рамки при фокусі
+    }
+
+    // Визначення стилів для опцій випадаючого списку
+    
+}
+option {
+    background-color: #fff; // Фон
+    color: #333; // Колір тексту
+    font-size: 1rem; // Розмір шрифту
+
+    &:hover {
+        background-color: #f0f0f0; // Фон при наведенні
+    }
+
+    &:selected {
+        background-color: #1DB954; // Фон вибраного варіанту
+        color: #fff; // Колір тексту вибраного варіанту
+    }
+}
+.modal-content {
+    button {
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        background-color: #1DB954;
+        color: #FFFFFF;
+        cursor: pointer;
+        transition: background-color 0.3s;
+        margin-top: 20px;
+
+        &:hover {
+            background-color: #169144;
+        }
+    }
+}
+
+
+.form-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 2rem;
+}
+
+.form-group {
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Для екранів шириною менше 768px */
+@media screen and (max-width: 768px) {
+    body {
+        font-size: 14px; /* Зменшення розміру шрифту для малих екранів */
+    }
+header {
+    .auth-buttons{
+        display: none;
+
+    }
+}
+    /* Додати інші адаптивні стилі тут */
+}
+
+/* Для екранів шириною менше 576px */
+@media screen and (max-width: 576px) {
+    body {
+        font-size: 12px; /* Додаткове зменшення розміру шрифту для дуже малих екранів */
+    }
+    
+
+    /* Додати інші адаптивні стилі тут */
+}

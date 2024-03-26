@@ -1,0 +1,54 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Track</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <nav class="tabs">
+            <a href="index.html">Home</a>
+            <a href="playlist.html">Playlists</a>
+            <a href="track.html">Tracks</a>
+        </nav>
+        <div class="user-info">
+            <span>Welcome, User123</span>
+            <button>Logout</button>
+        </div>
+        <form class="auth-buttons" action="login.html">
+            <input type="submit" value="Login"/>
+            <button>Sign Up</button>
+        </form>
+    </header>
+    <div class="dialog-container">
+        <div class="dialog">
+            <div class="form-group">
+                <label for="playlist_name">Playlist Name:</label>
+                <input type="text" id="playlist_name" name="playlist_name" required>
+            </div>
+        
+            <div class="form-group">
+                <label for="description">Description:</label>
+                <input type="text" id="description" name="description" required>
+            </div>
+        
+            <div class="form-group">
+                <label for="created_by">Created By:</label>
+                <input type="text" id="created_by" name="created_by" required>
+            </div>
+            <div class="form-group">
+                <label for="privacy">Privacy:</label>
+                <select class="playlist-options" name="privacy">
+                    <option value="public">Public</option>
+                    <option value="private">Private</option>
+                </select>
+            </div>
+        
+            <button type="submit">Create Playlist</button>
+        </div>
+    </div>
+</body>
+</html>

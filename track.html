@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Track</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <nav class="tabs">
+            <a href="index.html">Home</a>
+            <a href="playlist.html">Playlists</a>
+            <a href="track.html">Tracks</a>
+        </nav>
+        <div class="user-info">
+            <span>Welcome, User123</span>
+            <button>Logout</button>
+        </div>
+        <form class="auth-buttons" action="login.html">
+            <input type="submit" value="Login"/>
+            <button>Sign Up</button>
+        </form>
+    </header>
+    <div class="dialog-container">
+    <form action="add_track.php" method="post" class="dialog">
+        <div class="form-group">
+            <label for="track_name">Track Name:</label>
+            <input type="text" id="track_name" name="track_name" required>
+        </div>
+    
+        <div class="form-group">
+            <label for="artist">Artist:</label>
+            <input type="text" id="artist" name="artist" required>
+        </div>
+    
+        <div class="form-group">
+            <label for="genre">Genre:</label>
+            <input type="text" id="genre" name="genre" required>
+        </div>
+    
+        <div class="form-group">
+            <label for="duration">Duration:</label>
+            <input type="text" id="duration" name="duration" required>
+        </div>
+    
+        <div class="form-group">
+            <label for="release_year">Release Year:</label>
+            <input type="text" id="release_year" name="release_year" required>
+        </div>
+    
+        <button type="submit">Add Track</button>
+    </form>
+</div>
+    
+</body>
+</html>

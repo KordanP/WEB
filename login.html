@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Playlist Former</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <nav class="tabs">
+            <a href="index.html">Home</a>
+            <a href="playlist.html">Playlists</a>
+            <a href="track.html">Tracks</a>
+        </nav>
+        <div class="user-info">
+            <span>Welcome, User123</span>
+            <button>Logout</button>
+        </div>
+        <form class="auth-buttons" action="login.html">
+            <input type="submit" value="Login"/>
+            <button>Sign Up</button>
+        </form>
+    </header>
+
+    <main>
+        <section id="login">
+            <h2>Login</h2>
+            <form action="#" method="post">
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" required>
+                <div class="error-message" id="username-error">Please enter valid a username.</div> <!-- Відображення тексту помилки для ім'я користувача -->
+                
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required>
+                <div class="error-message" id="password-error">Please enter valid a password.</div> <!-- Відображення тексту помилки для пароля -->
+                
+                <button type="submit">Login</button>
+            </form>
+        </section>
+        <div id="errorModal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h2>Error Notification</h2>
+                <p>This is an error message. Please try again.</p>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 User Management System. All rights reserved.</p>
+    </footer>
+</body>
+</html>
