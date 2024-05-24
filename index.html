@@ -47,6 +47,89 @@
     </div>
     
 
-    <script src="script.js"></script>
+    <script >
+        // Функція для додавання треку до плейлисту
+function addToPlaylist(trackName) {
+    // Отримуємо вибраний плейлист
+    const playlistSelect = document.querySelector('.playlist-options');
+    const selectedPlaylist = playlistSelect.value;
+
+    // Ajax запит для додавання треку до плейлисту
+    fetch('/api/add_to_playlist', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            // Додайте CSRF токен для захисту від CSRF атак
+            'X-CSRFToken': getCookie('csrftoken'),
+        },
+        body: JSON.stringify({
+            track_name: trackName,
+            playlist: selectedPlaylist
+        })
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok ' + response.statusText);
+        }
+        return response.json();
+    })
+    .then(data => {
+        // Ваш код для обробки успішної відповіді
+        console.log('Track added to playlist:', data);
+        alert('Track added to playlist successfully!');
+    })
+    .catch(error => {
+        console.error('Error adding track to playlist:', error);
+        // Ваш код для обробки помилки
+        alert('Error adding track to playlist. Please try again.');
+    });
+}
+
+// Функція для закриття модального вікна
+function closeModal() {
+    const modal = document.getElementById('modal');
+    modal.style.display = 'none';
+}
+
+// Функція для отримання CSRF токена з cookie
+function getCookie(name) {
+    let cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+        const cookies = document.cookie.split(';');
+        for (let i = 0; i < cookies.length; i++) {
+            const cookie = cookies[i].trim();
+            if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+    return cookieValue;
+}
+
+// Отримуємо посилання на модальне вікно та кнопку закриття
+const modal = document.getElementById('modal');
+const closeModalButton = modal.querySelector('.close');
+
+// Додаємо обробник кліку на кнопку закриття модального вікна
+closeModalButton.addEventListener('click', () => {
+    closeModal();
+});
+
+// Додаємо обробник кліку за межами модального вікна для його закриття
+window.addEventListener('click', (event) => {
+    if (event.target === modal) {
+        closeModal();
+    }
+});
+
+// Додаємо обробник клавіші Escape для закриття модального вікна
+window.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape') {
+        closeModal();
+    }
+});
+
+    </script>
 </body>
 </html>

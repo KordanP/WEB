@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -26,30 +25,89 @@
     </header>
     <div class="dialog-container">
         <div class="dialog">
-            <div class="form-group">
-                <label for="playlist_name">Playlist Name:</label>
-                <input type="text" id="playlist_name" name="playlist_name" required>
-            </div>
-        
-            <div class="form-group">
-                <label for="description">Description:</label>
-                <input type="text" id="description" name="description" required>
-            </div>
-        
-            <div class="form-group">
-                <label for="created_by">Created By:</label>
-                <input type="text" id="created_by" name="created_by" required>
-            </div>
-            <div class="form-group">
-                <label for="privacy">Privacy:</label>
-                <select class="playlist-options" name="privacy">
-                    <option value="public">Public</option>
-                    <option value="private">Private</option>
-                </select>
-            </div>
-        
-            <button type="submit">Create Playlist</button>
+            <form id="createPlaylistForm">
+                <div class="form-group">
+                    <label for="playlist_name">Playlist Name:</label>
+                    <input type="text" id="playlist_name" name="playlist_name" required>
+                </div>
+            
+                <div class="form-group">
+                    <label for="description">Description:</label>
+                    <input type="text" id="description" name="description" required>
+                </div>
+            
+                <div class="form-group">
+                    <label for="created_by">Created By:</label>
+                    <input type="text" id="created_by" name="created_by" required>
+                </div>
+                <div class="form-group">
+                    <label for="privacy">Privacy:</label>
+                    <select class="playlist-options" id="privacy" name="privacy">
+                        <option value="public">Public</option>
+                        <option value="private">Private</option>
+                    </select>
+                </div>
+            
+                <button type="submit">Create Playlist</button>
+            </form>
+            <div id="responseMessage"></div>
         </div>
     </div>
+
+    <script>
+        document.getElementById('createPlaylistForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            createPlaylist();
+        });
+
+        function createPlaylist() {
+            const playlistName = document.getElementById('playlist_name').value;
+            const description = document.getElementById('description').value;
+            const createdBy = document.getElementById('created_by').value;
+            const privacy = document.getElementById('privacy').value;
+
+            fetch('/playlists/create', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': getCookie('csrftoken'), // Для захисту від CSRF
+                },
+                body: JSON.stringify({
+                    name: playlistName,
+                    description: description,
+                    created_by: createdBy,
+                    privacy: privacy
+                })
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok ' + response.statusText);
+                }
+                return response.json();
+            })
+            .then(data => {
+                document.getElementById('responseMessage').innerText = 'Playlist created successfully!';
+            })
+            .catch(error => {
+                document.getElementById('responseMessage').innerText = 'Error: ' + error;
+            });
+        }
+
+        // Функція для отримання CSRF токена з cookie
+        function getCookie(name) {
+            let cookieValue = null;
+            if (document.cookie && document.cookie !== '') {
+                const cookies = document.cookie.split(';');
+                for (let i = 0; i < cookies.length; i++) {
+                    const cookie = cookies[i].trim();
+                    if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                        break;
+                    }
+                }
+            }
+            return cookieValue;
+        }
+    </script>
 </body>
 </html>
